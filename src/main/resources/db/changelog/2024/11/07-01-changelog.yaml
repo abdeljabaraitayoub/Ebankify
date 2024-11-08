@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1730981988119-4
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  name: updated_at
+                  type: DATETIME
+            tableName: users
+  - changeSet:
+      id: 1730981988119-6
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: email
+            constraintName: uc_users_email
+            tableName: users
+  - changeSet:
+      id: 1730981988119-1
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - modifyDataType:
+            columnName: email
+            newDataType: VARCHAR(100)
+            tableName: users
+  - changeSet:
+      id: 1730981988119-2
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(100)
+            columnName: email
+            tableName: users
+            validate: true
+  - changeSet:
+      id: 1730981988119-3
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: password
+            tableName: users
+            validate: true
+

@@ -1,0 +1,73 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1730573356510-1
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: role
+            tableName: users
+  - changeSet:
+      id: 1730573356510-2
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: role
+                  type: VARCHAR(255)
+            tableName: users
+  - changeSet:
+      id: 1730573356510-3
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: status
+            tableName: accounts
+  - changeSet:
+      id: 1730573356510-4
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+            tableName: accounts
+  - changeSet:
+      id: 1730573356510-5
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: status
+            tableName: transactions
+        - dropColumn:
+            columnName: type
+            tableName: transactions
+  - changeSet:
+      id: 1730573356510-6
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+            tableName: transactions
+  - changeSet:
+      id: 1730573356510-8
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: type
+                  type: VARCHAR(255)
+            tableName: transactions
+

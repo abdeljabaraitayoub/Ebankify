@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - include:
+      file: 2024/11/02-01-changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 2024/11/02-02-changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 2024/11/02-03-changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 2024/11/06-01-changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 2024/11/07-01-changelog.yaml
+      relativeToChangelogFile: true

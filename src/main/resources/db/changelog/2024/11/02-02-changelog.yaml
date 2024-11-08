@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1730573174780-1
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: role
+            tableName: users
+  - changeSet:
+      id: 1730573174780-2
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: role
+                  type: VARCHAR(255)
+            tableName: users
+

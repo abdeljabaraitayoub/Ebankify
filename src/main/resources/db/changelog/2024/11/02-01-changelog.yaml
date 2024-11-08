@@ -1,0 +1,205 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1730559282611-1
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_accounts
+                  name: uuid
+                  type: UUID
+              - column:
+                  name: balance
+                  type: DOUBLE
+              - column:
+                  name: status
+                  type: SMALLINT
+              - column:
+                  name: user_id
+                  type: UUID
+            tableName: accounts
+  - changeSet:
+      id: 1730559282611-2
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_invoice
+                  name: uuid
+                  type: UUID
+              - column:
+                  name: amount_due
+                  type: DOUBLE
+              - column:
+                  name: due_date
+                  type: DATETIME
+              - column:
+                  name: user_id
+                  type: UUID
+            tableName: invoice
+  - changeSet:
+      id: 1730559282611-3
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_loans
+                  name: uuid
+                  type: UUID
+              - column:
+                  name: principal
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: interest_rate
+                  type: FLOAT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: term_months
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_approved
+                  type: BOOLEAN
+              - column:
+                  name: user_id
+                  type: UUID
+            tableName: loans
+  - changeSet:
+      id: 1730559282611-4
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_transactions
+                  name: uuid
+                  type: UUID
+              - column:
+                  name: type
+                  type: SMALLINT
+              - column:
+                  name: amount
+                  type: DOUBLE
+              - column:
+                  name: status
+                  type: SMALLINT
+              - column:
+                  name: source_account_id
+                  type: UUID
+              - column:
+                  name: destination_account_id
+                  type: UUID
+            tableName: transactions
+  - changeSet:
+      id: 1730559282611-5
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_users
+                  name: uuid
+                  type: UUID
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: age
+                  type: INT
+              - column:
+                  name: monthly_income
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: credit_score
+                  type: INT
+              - column:
+                  name: role
+                  type: SMALLINT
+            tableName: users
+  - changeSet:
+      id: 1730559282611-6
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: accounts
+            constraintName: FK_ACCOUNTS_ON_USER
+            referencedColumnNames: uuid
+            referencedTableName: users
+  - changeSet:
+      id: 1730559282611-7
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: invoice
+            constraintName: FK_INVOICE_ON_USER
+            referencedColumnNames: uuid
+            referencedTableName: users
+  - changeSet:
+      id: 1730559282611-8
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: loans
+            constraintName: FK_LOANS_ON_USER
+            referencedColumnNames: uuid
+            referencedTableName: users
+  - changeSet:
+      id: 1730559282611-9
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: destination_account_id
+            baseTableName: transactions
+            constraintName: FK_TRANSACTIONS_ON_DESTINATION_ACCOUNT
+            referencedColumnNames: uuid
+            referencedTableName: accounts
+  - changeSet:
+      id: 1730559282611-10
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: source_account_id
+            baseTableName: transactions
+            constraintName: FK_TRANSACTIONS_ON_SOURCE_ACCOUNT
+            referencedColumnNames: uuid
+            referencedTableName: accounts
+
