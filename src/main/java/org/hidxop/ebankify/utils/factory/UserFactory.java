@@ -4,6 +4,7 @@ package org.hidxop.ebankify.utils.factory;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import org.hidxop.ebankify.domain.entity.User;
+import org.hidxop.ebankify.domain.enumeration.Bank;
 import org.hidxop.ebankify.domain.enumeration.Role;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +29,7 @@ public class UserFactory {
                 .creditScore(faker.number().numberBetween(300, 850))
                 .email(faker.internet().emailAddress())
                 .password(faker.internet().password())
-                .role(Role.USER)
+                .role(faker.options().option(Role.class))
                 .build();
     }
 

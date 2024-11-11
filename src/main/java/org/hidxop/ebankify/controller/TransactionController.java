@@ -32,6 +32,11 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.findById(id));
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<TransactionBasicResponseDto>> findByUserId(@Valid @PathVariable UUID id) {
+        return ResponseEntity.ok(transactionService.findByUserId(id));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<TransactionBasicResponseDto> deleteById(@Valid @PathVariable UUID id) {
         transactionService.deleteById(id);
@@ -43,4 +48,16 @@ public class TransactionController {
         TransactionBasicResponseDto transactionResponseDto = transactionService.create(transactionDto);
         return new ResponseEntity<>(transactionResponseDto, HttpStatus.CREATED);
     }
+
+    @PatchMapping("/{id}/accept")
+    public ResponseEntity<TransactionBasicResponseDto> accept(@Valid @PathVariable UUID id) {
+        return ResponseEntity.ok(transactionService.accept(id));
+    }
+
+    @PatchMapping("/{id}/reject")
+    public ResponseEntity<TransactionBasicResponseDto> reject(@Valid @PathVariable UUID id) {
+        return ResponseEntity.ok(transactionService.reject(id));
+    }
+
+
 }

@@ -15,9 +15,19 @@ public interface ITransactionService {
     TransactionBasicResponseDto findById(UUID id);
 
 
+    List<TransactionBasicResponseDto> findByUserId(UUID userId);
+
     void deleteById(UUID id);
-    
+
     TransactionBasicResponseDto create(CreateTransactionRequestDto transactionDto);
+
+//    TransactionBasicResponseDto accepteByid(UUID id);
+
+    @Transactional
+    TransactionBasicResponseDto accept(UUID id);
+
+    @Transactional
+    TransactionBasicResponseDto reject(UUID id);
 
 //    AccountResponseDto create(CreateAccountRequestDto accountDto);
 //

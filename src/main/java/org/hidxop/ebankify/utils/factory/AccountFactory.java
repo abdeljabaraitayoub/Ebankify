@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.hidxop.ebankify.domain.entity.Account;
 import org.hidxop.ebankify.domain.entity.User;
 import org.hidxop.ebankify.domain.enumeration.AccountStatus;
+import org.hidxop.ebankify.domain.enumeration.Bank;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -23,10 +24,11 @@ public class AccountFactory {
     public Account createFakeAccount(User user) {
         return Account.builder()
                 .balance(faker.number().randomDouble(2, 0, 100000))
-                .status(AccountStatus.ACTIVE)
+                .status(faker.options().option(AccountStatus.class))
                 .user(user)
                 .outgoingTransactions(new HashSet<>())
                 .incomingTransactions(new HashSet<>())
+                .bank(faker.options().option(Bank.class))
                 .build();
     }
 

@@ -1,8 +1,6 @@
 package org.hidxop.ebankify.dto.transaction;
 
-import org.hidxop.ebankify.domain.entity.Account;
 import org.hidxop.ebankify.domain.entity.Transaction;
-import org.hidxop.ebankify.dto.account.AccountBasicResponseDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -19,8 +17,7 @@ public interface TransactionMapper {
     TransactionBasicResponseDto toDto(Transaction transaction);
 
     List<TransactionBasicResponseDto> toDto(List<Transaction> transactions);
-
-
+    
     @Mapping(target = "sourceAccount.uuid", source = "sourceAccount")
     @Mapping(target = "destinationAccount.uuid", source = "destinationAccount")
     Transaction toEntity(CreateTransactionRequestDto dto);
