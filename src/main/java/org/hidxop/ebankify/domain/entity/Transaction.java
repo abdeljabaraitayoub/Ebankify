@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hidxop.ebankify.domain.enumeration.PermanentTransactionFrequencyType;
 import org.hidxop.ebankify.domain.enumeration.TransactionStatus;
 import org.hidxop.ebankify.domain.enumeration.TransactionType;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -29,11 +31,11 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "source_account_id")
     private Account sourceAccount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "destination_account_id")
     private Account destinationAccount;
 
@@ -46,4 +48,14 @@ public class Transaction {
     @Column(name = "updated_at")
     private Date UpdatedAt;
 
+    @Column(name = "frequency_type")
+    @Enumerated(EnumType.STRING)
+
+    
+    private PermanentTransactionFrequencyType frequencyType;
+    @Column(name = "is_active")
+    private boolean isActive;
+
+    @OneToMany(mappedBy = "transaction")
+    List<TransactionHistory> histories;
 }

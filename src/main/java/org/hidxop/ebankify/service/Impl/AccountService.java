@@ -100,6 +100,5 @@ public class AccountService implements IAccountService {
         account.setStatus(AccountStatus.BLOCKED);
         return accountMapper.toDto(account);
     }
-
-
+    
 }

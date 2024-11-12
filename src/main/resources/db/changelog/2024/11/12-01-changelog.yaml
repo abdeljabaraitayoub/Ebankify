@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731400768178-1
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: account_id
+                  type: UUID
+            tableName: loans
+  - changeSet:
+      id: 1731400768178-2
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: account_id
+            baseTableName: loans
+            constraintName: FK_LOANS_ON_ACCOUNT
+            referencedColumnNames: uuid
+            referencedTableName: accounts
+

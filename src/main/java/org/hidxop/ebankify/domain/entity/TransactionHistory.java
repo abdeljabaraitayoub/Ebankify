@@ -1,5 +1,6 @@
 package org.hidxop.ebankify.domain.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,26 +14,16 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
-@Table(name = "loans")
-public class Loan {
+@Table(name = "transaction_history")
+public class TransactionHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID uuid;
-
-    private Double principal;
-    private float interestRate;
-    private int termMonths;
-    private boolean isApproved;
+    private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "transaction_id")
+    private Transaction transaction;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
@@ -41,4 +32,5 @@ public class Loan {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Date UpdatedAt;
+
 }

@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731355498693-1
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  name: updated_at
+                  type: DATETIME
+            tableName: transaction_history
+

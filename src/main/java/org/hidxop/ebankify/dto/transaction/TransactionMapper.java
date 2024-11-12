@@ -17,7 +17,7 @@ public interface TransactionMapper {
     TransactionBasicResponseDto toDto(Transaction transaction);
 
     List<TransactionBasicResponseDto> toDto(List<Transaction> transactions);
-    
+
     @Mapping(target = "sourceAccount.uuid", source = "sourceAccount")
     @Mapping(target = "destinationAccount.uuid", source = "destinationAccount")
     Transaction toEntity(CreateTransactionRequestDto dto);

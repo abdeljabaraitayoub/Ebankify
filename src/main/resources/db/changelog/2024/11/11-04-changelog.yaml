@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731355309159-1
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_transaction_history
+                  name: id
+                  type: UUID
+              - column:
+                  name: transaction_id
+                  type: UUID
+            tableName: transaction_history
+  - changeSet:
+      id: 1731355309159-2
+      author: hidxop
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: transaction_id
+            baseTableName: transaction_history
+            constraintName: FK_TRANSACTION_HISTORY_ON_TRANSACTION
+            referencedColumnNames: uuid
+            referencedTableName: transactions
+

@@ -3,6 +3,7 @@ package org.hidxop.ebankify.dto.transaction;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import org.hidxop.ebankify.domain.enumeration.PermanentTransactionFrequencyType;
 import org.hidxop.ebankify.domain.enumeration.TransactionType;
 
 import java.util.UUID;
@@ -17,6 +18,6 @@ public record CreateTransactionRequestDto(
         @NotNull
         UUID sourceAccount,
         @NotNull
-        UUID destinationAccount
-) {
+        UUID destinationAccount,
+        PermanentTransactionFrequencyType frequencyType) {
 }
